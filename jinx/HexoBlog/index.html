@@ -1,0 +1,894 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Hexo博客搭建 Hexo + GitHub Pages + Cloudflare Pages 搭建教程 | 东方月初</title><meta name="keywords" content="Hexo,Github,个人博客,Cloudflare pages,Noge.js,Git,Markdown,静态网站"><meta name="author" content="东方月初"><meta name="copyright" content="东方月初"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#18171d"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Hexo博客搭建 Hexo + GitHub Pages + Cloudflare Pages 搭建教程"><meta name="application-name" content="Hexo博客搭建 Hexo + GitHub Pages + Cloudflare Pages 搭建教程"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#18171d"><meta property="og:type" content="article"><meta property="og:title" content="Hexo博客搭建 Hexo + GitHub Pages + Cloudflare Pages 搭建教程"><meta property="og:url" content="https://hexo.200038.xyz/jinx/HexoBlog/index.html"><meta property="og:site_name" content="东方月初"><meta property="og:description" content="本文详细介绍了如何使用Hexo框架搭建一个个人博客，并将其部署到GitHub Pages和Cloudflare Pages上。主要内容包括： 环境准备：安装Node.js和Git 配置Git和GitHub：设置SSH密钥，创建GitHub仓库 初始化Hexo项目：安装Hexo，创建新博客 部署到Gi"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://serv.200038.xyz/2024/09/19/722451.webp"><meta property="article:author" content="东方月初"><meta property="article:tag" content="在晨光中奔跑,在暮色中微笑,生活的每一刻,都值得用心拥抱"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://serv.200038.xyz/2024/09/19/722451.webp"><meta name="description" content="本文详细介绍了如何使用Hexo框架搭建一个个人博客，并将其部署到GitHub Pages和Cloudflare Pages上。主要内容包括： 环境准备：安装Node.js和Git 配置Git和GitHub：设置SSH密钥，创建GitHub仓库 初始化Hexo项目：安装Hexo，创建新博客 部署到Gi"><link rel="shortcut icon" href="https://serv.200038.xyz/2024/09/25/081149.webp"><link rel="canonical" href="https://hexo.200038.xyz/jinx/HexoBlog/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;78770b791609452b93e4bc63b6257131&quot;}"></script><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"Jinx","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"👀跑哪里去了~","backTitle":"🐖抓到你啦～'"},
+  LA51: {"enable":true,"ck":"3JSq0Qo07GmVu5Hs","LingQueMonitorID":null},
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://weilai.us.kg',
+  commentBarrageConfig:{"enable":true,"maxBarrage":1,"barrageTime":4000,"accessToken":"73379704eedb437ba4f2f9774ba8cdf0","mailMd5":""},
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":5},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: {"mode":"api","api":"https://imgcolor.naokuo.top/api?img=","cover_change":true},
+  authorStatus: {"skills":["🤖️ 在晨光中奔跑","🔍 在暮色中微笑","🏠 生活的每一刻","🔨 都值得用心拥抱","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"本篇文章距离创建时间已过","messageNext":"天,不保证内容可用性."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: 东方月初","link":"链接: ","source":"来源: 东方月初","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '东方月初',
+  title: 'Hexo博客搭建 Hexo + GitHub Pages + Cloudflare Pages 搭建教程',
+  postAI: '这篇文章介绍如何使用 Hexo+ GitHub Pages + Cloudflare Pages搭建Hexo博客，快速简洁高效，零成本搭建个人博客：Hexo + GitHub Pages + Cloudflare Pages 搭建教程',
+  pageFillDescription: '本文详细介绍了如何使用Hexo框架搭建一个个人博客并将其部署到GitHub Pages和Cloudflare Pages上。主要内容包括：, 这个教程适合那些想要快速搭建个人博客但又不想花费太多成本的人。通过使用Hexo、GitHub和Cloudflare的免费服务您可以轻松创建一个高效、简洁的博客网站。, 1. 准备工作, 2. 软件支持, 3.1.安装 Node, 4.1.安装 Git, 5. 配置 Git 密钥并连接至 Github, 常用 Git 命令, 6. 配置用户名和邮箱, 7. 配置公钥连接Github, 出现连接到账户的信息说明已经大功告成至此完成了环境准备工作。, , 8. 创建GitHub.io仓库, 9. 初始化 Hexo 博客, 10. 将静态博客挂载到 GitHub Pages, 稍等两分钟打开浏览器访问：httpsx2Fx2F你Github的用户名.github.io 这时候我们就可以看到博客内容了。, 12. 将静态博客挂载到 Cloudflare Pages, 13. 如何使用, VSCODE 终端首次执行报错 使用管理员身份打开 powershell 输入以下命令, Hexo 部分数据无法更新或者新生成的文件与上一版本完全相同请清理缓存后重试。, CM大佬   Blog  , CM大佬  YouTobe , 项目地址  Hexo , 参考资料, 主题美化, 主题美化参考资料本文详细介绍了如何使用框架搭建一个个人博客并将其部署到和上主要内容包括环境准备安装和配置和设置密钥创建仓库初始化项目安装创建新博客部署到配置部署设置推送静态文件部署到连接仓库自动部署基本使用方法创建新文章本地预览发布更新这个教程适合那些想要快速搭建个人博客但又不想花费太多成本的人通过使用和的免费服务您可以轻松创建一个高效简洁的博客网站准备工作域名非必须你也可以使用免费域名或者或分配的域名也可以必须你需要注册一个帐号非必须你需要注册一个帐号这样你就可以将博客部署在的里加速但是你也可以直接使用分配的域名软件支持必须必须非必须这是一款轻量型的代码编辑器可以帮助你养成一个很好的编程习惯安装打开官网下载和自己系统相配的的安装程序否则会出现安装问题下载地址下载后安装安装的目录可以使用默认目录安装完成后检查是否安装成功在键盘按下键输入然后回车打开窗口执行命令看到版本信息则说明安装成功修改源下载各种模块默认是从国外服务器下载速度较慢建议配置成华为云镜像打开窗口运行如下命令安装进入官网下载适合你当前系统的下载后安装即可安装的目录最好使用默认目录点击电脑左下角开始即可看见是命令行的指令风格是系统的指令风格建议使用是图形化界面新手学习不建议使用配置密钥并连接至常用命令查看所有配置查看系统配置查看用户全局配置配置用户名和邮箱你的用户名你的邮箱通过检查是否配置成功配置公钥连接执行以下命令生成公钥此公钥用于你的计算机连接你的邮箱提示直接一路回车即可新手小白不推荐设置密钥之后打开盘下用户文件夹下的的文件夹会看到二个文件私钥公钥用记事本打开中的公钥复制里面的内容然后开始在中配置密钥将配置到进入点击右上角头像选择进入设置页后选择名字随便起公钥填到那一栏测试连接输入以下命令第一次连接会提示输入即可出现连接到账户的信息说明已经大功告成至此完成了环境准备工作创建仓库点击右上角的按钮选择创建一个用户名的仓库仓库名字的格式必须为用户名注意前缀必须为用户名此为预览博客需要后期可修改仓库名可见性必须选择方便第一次部署检查问题点击进行创建即可初始化博客创建一个文件夹来保存博客源码我这里选的路径为在文件夹内右键鼠标选择在输入如下命令安装安装完后输入验证是否安装成功初始化项目安装相关依赖初始化项目后打开有如下结构文件名解释依赖包生成文章的一些模板用来存放你的文章主题发布时忽略的文件可忽略主题的配置文件博客的配置文件项目名称描述版本运行和开发等信打开输入启动项目打开浏览器输入地址看到视频里的效果说明你的博客已经构建成功了将静态博客挂载到安装修改文件在目录下的就是整个框架的配置文件了可以在里面修改大部分的配置详细可参考官方的配置描述修改最后一行的配置将修改为你自己的项目地址即可还有分支要改为代表主分支注意缩进你的名你的名修改好配置后运行如下命令将代码部署到三连终端或者终端删除之前生成的文件可以用缩写生成静态文章可以用缩写部署文章可以用缩写注意时可能要你输入和如果出现则说明部署成功了稍等两分钟打开浏览器访问你的用户名这时候我们就可以看到博客内容了将静态博客挂载到在和中选择的连接到然后登录你仓库对应的帐号点击保存并部署后等待部署完成提示成功您的项目已部署到以下区域全球后浏览器访问分配的域名这时候我们就可以看到博客内容了当然也可以添加自己的自定义域名这时你也就可以将你的用户名的仓库设置为私库了如何使用新建一篇博文这是一篇新的博文然后用文本编辑器去编辑这是一篇新的博文里的内容即可注意要使用格式书写详细使用方法可以查阅编辑完文章保存后可以使用如下命令生成本地页面进行预览终端或者终端确认无误后使用以下命令将本地文章推送至仓库即可终端或者终端终端首次执行报错使用管理员身份打开输入以下命令部分数据无法更新或者新生成的文件与上一版本完全相同请清理缓存后重试引用站外地址本博文转载自喂饭大佬大佬大佬项目地址参考资料主题美化项目地址官方文档主题美化参考资料',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-25 09:51:35',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/static/messages/messages.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/niceao/niceao-cdn@main/hexo/css/anzhiyu.css"><script async defer src="https://umami.hexo.kozow.com/script.js" data-website-id="d4662f99-6e33-4665-9ae0-db72eda07b0b" data-host-url="https://umami.hexo.kozow.com/"></script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="东方月初" type="application/atom+xml">
+</head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div id="loading-box"></div><div class="cat__scene"><div class="cat__main"><div class="cat__body"></div><div class="cat__body"></div><div class="cat__tail"></div><div class="cat__head"></div></div></div></div><script>const preloader = {
+  endLoading: () => {
+    var loadingBox = document.getElementById('loading-box');
+    var loadingBoxme = document.getElementById('loading-box-me');
+    loadingBoxme.addEventListener('animationend', () => {setTimeout(function() {loadingBox.classList.add("loaded");}, 2000) })
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  },
+  otherendLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.otherendLoading();},5000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.otherendLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">东方月初</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/messages/"><i class="anzhiyufont anzhiyu-icon-comments faa-tada" style="font-size: 0.9em;"></i><span> 最新评论</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://aibing.nicea.us.kg/"><i class="anzhiyufont anzhiyu-icon-keyboard faa-tada" style="font-size: 0.9em;"></i><span> AIBING</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://jinx.acea.us.kg"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 影视站</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://dongfang.serv00.net"><i class="anzhiyufont anzhiyu-icon-history faa-tada" style="font-size: 0.9em;"></i><span> 哪吒监控</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://status.caoni.nyc.mn/status/status"><i class="anzhiyufont anzhiyu-icon-history faa-tada" style="font-size: 0.9em;"></i><span> Uptime</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/websites/"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 网站收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/update/"><i class="anzhiyufont anzhiyu-icon-bolt faa-tada" style="font-size: 0.9em;"></i><span> 本站日志</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://200038.xyz"><i class="anzhiyufont anzhiyu-icon-anzhiyu faa-tada" style="font-size: 0.9em;"></i><span> 个人主页</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/null" target="_blank"><img class="post-qr-code-img" alt="微信" src="/null"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/null" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="/null"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Cloudflare-R2/" style="font-size: 1.05rem;">Cloudflare R2<sup>1</sup></a><a href="/tags/Cloudflare-Tunnels/" style="font-size: 1.05rem;">Cloudflare Tunnels<sup>1</sup></a><a href="/tags/Cloudflare-pages/" style="font-size: 1.05rem;">Cloudflare pages<sup>7</sup></a><a href="/tags/D1-R2/" style="font-size: 1.05rem;">D1 + R2<sup>1</sup></a><a href="/tags/Fastly-CDN/" style="font-size: 1.05rem;">Fastly CDN<sup>1</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>1</sup></a><a href="/tags/GitHub/" style="font-size: 1.05rem;">GitHub<sup>1</sup></a><a href="/tags/Github/" style="font-size: 1.05rem;">Github<sup>1</sup></a><a href="/tags/Hexo/" style="font-size: 1.05rem;">Hexo<sup>8</sup></a><a href="/tags/Hexo%E7%BE%8E%E5%8C%96/" style="font-size: 1.05rem;">Hexo美化<sup>2</sup></a><a href="/tags/LOL/" style="font-size: 1.05rem;">LOL<sup>1</sup></a><a href="/tags/Markdown/" style="font-size: 1.05rem;">Markdown<sup>1</sup></a><a href="/tags/Noge-js/" style="font-size: 1.05rem;">Noge.js<sup>1</sup></a><a href="/tags/PicGo-WebP-Cloud/" style="font-size: 1.05rem;">PicGo+WebP Cloud<sup>1</sup></a><a href="/tags/Rin/" style="font-size: 1.05rem;">Rin<sup>1</sup></a><a href="/tags/Serv00/" style="font-size: 1.05rem;">Serv00<sup>6</sup></a><a href="/tags/TCPping/" style="font-size: 1.05rem;">TCPping<sup>1</sup></a><a href="/tags/Tag-Plugins/" style="font-size: 1.05rem;">Tag Plugins<sup>2</sup></a><a href="/tags/VPSX-UI/" style="font-size: 1.05rem;">VPSX-UI<sup>1</sup></a><a href="/tags/VPSping/" style="font-size: 1.05rem;">VPSping<sup>1</sup></a><a href="/tags/VPS%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/" style="font-size: 1.05rem;">VPS命令操作<sup>1</sup></a><a href="/tags/VPS%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 1.05rem;">VPS工具箱<sup>1</sup></a><a href="/tags/VPS%E8%84%9A%E6%9C%AC/" style="font-size: 1.05rem;">VPS脚本<sup>2</sup></a><a href="/tags/Vercel/" style="font-size: 1.05rem;">Vercel<sup>1</sup></a><a href="/tags/X-ui/" style="font-size: 1.05rem;">X-ui<sup>1</sup></a><a href="/tags/npm%E5%91%BD%E4%BB%A4/" style="font-size: 1.05rem;">npm命令<sup>1</sup></a><a href="/tags/wrok/" style="font-size: 1.05rem;">wrok<sup>1</sup></a><a href="/tags/%E4%B8%80%E9%94%AE%E5%93%AA%E5%90%92/" style="font-size: 1.05rem;">一键哪吒<sup>1</sup></a><a href="/tags/%E4%B8%8D%E5%A4%AA%E5%85%A8/" style="font-size: 1.05rem;">不太全<sup>1</sup></a><a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 1.05rem;">个人博客<sup>1</sup></a><a href="/tags/%E4%B8%BB%E9%A2%98%E5%A4%87%E5%BF%98/" style="font-size: 1.05rem;">主题备忘<sup>1</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 1.05rem;">博客<sup>1</sup></a><a href="/tags/%E5%B0%8F%E9%9B%85Alist/" style="font-size: 1.05rem;">小雅Alist<sup>1</sup></a><a href="/tags/%E5%BD%B1%E8%A7%86%E7%AB%99%E6%90%AD%E5%BB%BA/" style="font-size: 1.05rem;">影视站搭建<sup>1</sup></a><a href="/tags/%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%93%AA%E5%90%92%E6%95%99%E7%A8%8B/" style="font-size: 1.05rem;">最简单的哪吒教程<sup>1</sup></a><a href="/tags/%E6%A0%87%E7%AD%BE%E5%86%99%E6%B3%95/" style="font-size: 1.05rem;">标签写法<sup>1</sup></a><a href="/tags/%E7%95%99%E8%A8%80%E6%9D%BF/" style="font-size: 1.05rem;">留言板<sup>1</sup></a><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%91%E6%8E%A7/" style="font-size: 1.05rem;">网站监控<sup>1</sup></a><a href="/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/" style="font-size: 1.05rem;">静态网站<sup>1</sup></a><a href="/tags/%E9%A6%96%E9%A1%B5%E5%8A%A0%E8%BD%BD/" style="font-size: 1.05rem;">首页加载<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">6</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">8</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">8</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item on" id="consoleCommentBarrage" onclick="anzhiyu.switchCommentBarrage()" title="热评开关"><a class="commentBarrage"><i class="anzhiyufont anzhiyu-icon-message"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">转载</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/Hexo/" itemprop="url">Hexo</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/Hexo/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Hexo</span></a><a class="article-meta__tags" href="/tags/Github/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Github</span></a><a class="article-meta__tags" href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>个人博客</span></a><a class="article-meta__tags" href="/tags/Cloudflare-pages/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Cloudflare pages</span></a><a class="article-meta__tags" href="/tags/Noge-js/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Noge.js</span></a><a class="article-meta__tags" href="/tags/Git/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Git</span></a><a class="article-meta__tags" href="/tags/Markdown/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Markdown</span></a><a class="article-meta__tags" href="/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>静态网站</span></a></span></div></div><h1 class="post-title" itemprop="name headline">Hexo博客搭建 Hexo + GitHub Pages + Cloudflare Pages 搭建教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2024-08-03T04:20:08.000Z" title="发表于 2024-08-03 12:20:08">2024-08-03</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-10-25T01:51:35.812Z" title="更新于 2024-10-25 09:51:35">2024-10-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">2.1k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator"></span><span id="" data-flag-title="Hexo博客搭建 Hexo + GitHub Pages + Cloudflare Pages 搭建教程"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="twikoo_visitors" title="访问量"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为深圳"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>深圳</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://serv.200038.xyz/2024/09/19/722451.webp"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><div class="post-ai-description"><div class="ai-title"><i class="anzhiyufont anzhiyu-icon-bilibili"></i><div class="ai-title-text">AI-摘要</div><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i><i class="anzhiyufont anzhiyu-icon-circle-dot" title="朗读摘要"></i><div id="ai-tag">Jinx GPT</div></div><div class="ai-explanation">AI初始化中...</div><div class="ai-btn-box"><div class="ai-btn-item">介绍自己 🙈</div><div class="ai-btn-item">生成本文简介 👋</div><div class="ai-btn-item">推荐相关文章 📖</div><div class="ai-btn-item">前往主页 🏠</div><div class="ai-btn-item" id="go-tianli-blog">前往爱发电购买</div></div><script data-pjax src="/js/anzhiyu/ai_abstract.js"></script></div><article class="post-content" id="article-container" itemscope itemtype="https://hexo.200038.xyz/jinx/HexoBlog/"><header><a class="post-meta-categories" href="/categories/Hexo/" itemprop="url">Hexo</a><a href="/tags/Hexo/" tabindex="-1" itemprop="url">Hexo</a><a href="/tags/Github/" tabindex="-1" itemprop="url">Github</a><a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" tabindex="-1" itemprop="url">个人博客</a><a href="/tags/Cloudflare-pages/" tabindex="-1" itemprop="url">Cloudflare pages</a><a href="/tags/Noge-js/" tabindex="-1" itemprop="url">Noge.js</a><a href="/tags/Git/" tabindex="-1" itemprop="url">Git</a><a href="/tags/Markdown/" tabindex="-1" itemprop="url">Markdown</a><a href="/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/" tabindex="-1" itemprop="url">静态网站</a><h1 id="CrawlerTitle" itemprop="name headline">Hexo博客搭建 Hexo + GitHub Pages + Cloudflare Pages 搭建教程</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">CM喂饭干货满满</span><time itemprop="dateCreated datePublished" datetime="2024-08-03T04:20:08.000Z" title="发表于 2024-08-03 12:20:08">2024-08-03</time><time itemprop="dateCreated datePublished" datetime="2024-10-25T01:51:35.812Z" title="更新于 2024-10-25 09:51:35">2024-10-25</time></header><h2 id="本文详细介绍了如何使用Hexo框架搭建一个个人博客，并将其部署到GitHub-Pages和Cloudflare-Pages上。主要内容包括："><a href="#本文详细介绍了如何使用Hexo框架搭建一个个人博客，并将其部署到GitHub-Pages和Cloudflare-Pages上。主要内容包括：" class="headerlink" title="本文详细介绍了如何使用Hexo框架搭建一个个人博客，并将其部署到GitHub Pages和Cloudflare Pages上。主要内容包括："></a>本文详细介绍了如何使用Hexo框架搭建一个个人博客，并将其部署到GitHub Pages和Cloudflare Pages上。主要内容包括：</h2><ol>
+<li>环境准备：安装Node.js和Git</li>
+<li>配置Git和GitHub：设置SSH密钥，创建GitHub仓库</li>
+<li>初始化Hexo项目：安装Hexo，创建新博客</li>
+<li>部署到GitHub Pages：配置部署设置，推送静态文件</li>
+<li>部署到Cloudflare Pages：连接GitHub仓库，自动部署</li>
+<li>基本使用方法：创建新文章，本地预览，发布更新</li>
+</ol>
+<h3 id="这个教程适合那些想要快速搭建个人博客，但又不想花费太多成本的人。通过使用Hexo、GitHub和Cloudflare的免费服务，您可以轻松创建一个高效、简洁的博客网站。"><a href="#这个教程适合那些想要快速搭建个人博客，但又不想花费太多成本的人。通过使用Hexo、GitHub和Cloudflare的免费服务，您可以轻松创建一个高效、简洁的博客网站。" class="headerlink" title="这个教程适合那些想要快速搭建个人博客，但又不想花费太多成本的人。通过使用Hexo、GitHub和Cloudflare的免费服务，您可以轻松创建一个高效、简洁的博客网站。"></a>这个教程适合那些想要快速搭建个人博客，但又不想花费太多成本的人。通过使用Hexo、GitHub和Cloudflare的免费服务，您可以轻松创建一个高效、简洁的博客网站。</h3><hr>
+<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><ul>
+<li><code>域名</code> （<strong>非必须</strong>，你也可以使用免费域名，或者<code>GitHub.io</code>或<code>Pages.dev</code>分配的域名也可以）</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/">Github</a> （<strong>必须</strong>，你需要注册一个GitHub帐号）</li>
+<li><a target="_blank" rel="noopener" href="https://dash.cloudflare.com/">Cloudflare</a>（非必须，你需要注册一个Cloudflare帐号，这样你就可以将博客部署在CF的CDN里加速，但是你也可以直接使用GitHub.io分配的域名）</li>
+</ul>
+<hr>
+<h2 id="2-软件支持"><a href="#2-软件支持" class="headerlink" title="2. 软件支持"></a>2. 软件支持</h2><ol>
+<li><a href="./#2-1%E5%AE%89%E8%A3%85-Node">Node</a>（必须）</li>
+<li><a href="./#2-2%E5%AE%89%E8%A3%85-Git">Git</a>（必须）</li>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VSCode</a>（非必须，这是一款轻量型的代码编辑器，可以帮助你养成一个很好的编程习惯）</li>
+</ol>
+<h2 id="3-1-安装-Node"><a href="#3-1-安装-Node" class="headerlink" title="3.1.安装 Node"></a>3.1.安装 Node</h2><ol>
+<li>打开Node官网，下载和自己系统相配的Node的安装程序，否则会出现安装问题。下载地址：<a target="_blank" rel="noopener" href="https://nodejs.org/en">https://nodejs.org/en</a></li>
+<li>下载后安装，安装的目录可以使用默认目录 <code>C:/Program Files/nodejs/</code></li>
+<li>安装完成后，检查是否安装成功。在键盘按下Win + R键，输入CMD，然后回车，打开CMD窗口，执行 <code>node -v</code> 命令，看到版本信息，则说明安装成功。</li>
+</ol>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/5ca2f549a4489064d3444.jpg" alt="PNG"></p>
+<ol start="4">
+<li>修改npm源。npm下载各种模块，默认是从国外服务器下载，速度较慢，建议配置成华为云镜像。打开CMD窗口，运行如下命令：</li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://mirrors.huaweicloud.com/repository/npm/</span><br></pre></td></tr></table></figure>
+<h2 id="4-1-安装-Git"><a href="#4-1-安装-Git" class="headerlink" title="4.1.安装 Git"></a>4.1.安装 Git</h2><ol>
+<li>进入官网下载适合你当前系统的 Git：<strong><a target="_blank" rel="noopener" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></strong></li>
+</ol>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/14b9fdf14c49320e531fb.jpg" alt="PNG"></p>
+<ol start="2">
+<li>下载后安装Git即可，安装的目录最好使用默认目录<code>C:/Program Files/Git</code></li>
+<li>点击电脑左下角开始即可看见<code>Git CMD</code>、<code>Git Bash</code>、<code>Git GUI</code>。</li>
+</ol>
+<ul>
+<li><strong><code>Git CMD</code>是windows 命令行的指令风格</strong></li>
+<li><strong><code>Git Bash</code> 是linux系统的指令风格（建议使用）</strong></li>
+<li><strong><code>Git GUI</code>是图形化界面（新手学习不建议使用）</strong></li>
+</ul>
+<hr>
+<h2 id="5-配置-Git-密钥并连接至-Github"><a href="#5-配置-Git-密钥并连接至-Github" class="headerlink" title="5. 配置 Git 密钥并连接至 Github"></a>5. 配置 Git 密钥并连接至 Github</h2><h3 id="常用-Git-命令"><a href="#常用-Git-命令" class="headerlink" title="常用 Git 命令"></a>常用 Git 命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config -l  //查看所有配置</span><br><span class="line">git config --system --list //查看系统配置</span><br><span class="line">git config --global --list //查看用户（全局）配置</span><br></pre></td></tr></table></figure>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/f403664b22ad3488a5fb4.jpg" alt="PNG"></p>
+<h2 id="6-配置用户名和邮箱"><a href="#6-配置用户名和邮箱" class="headerlink" title="6. 配置用户名和邮箱"></a>6. 配置用户名和邮箱</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;你的用户名&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;你的邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>通过<code>git config -l</code> 检查是否配置成功。</strong></li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/67dca39142021e2214e2b.jpg" alt="PNG"></p>
+<h2 id="7-配置公钥连接Github"><a href="#7-配置公钥连接Github" class="headerlink" title="7. 配置公钥连接Github"></a>7. 配置公钥连接Github</h2><ul>
+<li>执行以下命令生成ssh公钥，此公钥用于你的计算机连接Github</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;你的邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>提示<code>Enter file in which to save the key</code>直接一路回车即可，新手小白不推荐设置密钥</strong></li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/45d70737c64caeb4393ad.jpg" alt="PNG"></p>
+<ul>
+<li><p>之后打开<code>C</code>盘下用户文件夹下的<code>ssh</code>的文件夹，会看到二个文件</p>
+</li>
+<li><p><strong><code>id_rsa</code>私钥</strong></p>
+</li>
+<li><p><strong><code>id_rsa.pub</code>公钥</strong></p>
+</li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/40bd636f749347666f9f7.jpg" alt="PNG"></p>
+<ul>
+<li>用记事本打开<code>id_rsa.pub</code>中的公钥，复制里面的内容，然后开始在github中配置ssh密钥。</li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/0086246f3ccc703b9035e.jpg" alt="PNG"></p>
+<ul>
+<li>将 <code>SSH KEY</code> 配置到 <code>GitHub</code><br>进入github，点击右上角头像 选择<code>settings</code>，进入设置页后选择 <code>SSH and GPG keys</code>，名字随便起，公钥填到Key那一栏。</li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/75fc281237bfc6751a295.jpg" alt="PNG"></p>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/993edae3bbca9489dc156.jpg" alt="PNG"></p>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/fa8a7628c285e6be5c0a4.png" alt="PNG"></p>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/f3fa79cf3d639ef2d5bcb.png" alt="PNG"></p>
+<ul>
+<li>测试连接，输入以下命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>第一次连接会提示<code>Are you sure you want to continue connecting (yes/no/[fingerprint])?</code>，输入yes即可</strong></li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/faa0077eeab8c82f1de9e.png" alt="PNG"></p>
+<h2 id="出现连接到账户的信息，说明已经大功告成，至此完成了环境准备工作。"><a href="#出现连接到账户的信息，说明已经大功告成，至此完成了环境准备工作。" class="headerlink" title="出现连接到账户的信息，说明已经大功告成，至此完成了环境准备工作。"></a>出现连接到账户的信息，说明已经大功告成，至此完成了环境准备工作。</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/faa0077eeab8c82f1de9e.png" alt="PNG"></h2><h2 id="8-创建GitHub-io仓库"><a href="#8-创建GitHub-io仓库" class="headerlink" title="8. 创建GitHub.io仓库"></a>8. 创建GitHub.io仓库</h2><ul>
+<li>点击右上角的<code>+</code>按钮，选择<code>New repository</code>，创建一个&lt;用户名&gt;.<code>github.io</code>的仓库。</li>
+<li>仓库名字的格式必须为：<code>&lt;用户名&gt;.github.io</code> (注意：前缀必须为用户名，此为预览博客需要，后期可修改仓库名)</li>
+<li>可见性必须选择 <code>Public</code> 方便第一次部署检查问题，点击 <code>Creat repository </code>进行创建即可</li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/3d9274644460cd1ffeb26.png" alt="PNG"></p>
+<h2 id="9-初始化-Hexo-博客"><a href="#9-初始化-Hexo-博客" class="headerlink" title="9. 初始化 Hexo 博客"></a>9. 初始化 Hexo 博客</h2><ul>
+<li>创建一个文件夹来保存博客源码（我这里选的路径为<code>D:/Hexo-Blog</code>），在文件夹内右键鼠标，选择<code>Open Git Bash here</code></li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/f78e04406dc803d610538.png" alt="PNG"></p>
+<ul>
+<li>在<code>Git BASH</code>输入如下命令安装 <code>Hexo</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli &amp;&amp; hexo -v</span><br></pre></td></tr></table></figure>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/808bff9b7ab5b13fcd200.png" alt="PNG"></p>
+<ul>
+<li>安装完后输入<code>hexo -v</code>验证是否安装成功。</li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/17349517f78516f7ac8ff.png" alt="PNG"></p>
+<ul>
+<li>初始化 Hexo 项目安装相关依赖。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog-demo</span><br><span class="line"><span class="built_in">cd</span> blog-demo</span><br><span class="line">npm i</span><br></pre></td></tr></table></figure>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/1c130d7beed537111d448.png" alt="PNG"></p>
+<ul>
+<li>初始化项目后，打开<code>blog-demo</code>有如下结构</li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/74128294708705e22e188.png" alt="PNG"></p>
+<table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>node_modules</td>
+<td>依赖包</td>
+</tr>
+<tr>
+<td>scaffolds</td>
+<td>生成文章的一些模板</td>
+</tr>
+<tr>
+<td>source</td>
+<td>用来存放你的文章</td>
+</tr>
+<tr>
+<td>themes</td>
+<td>主题</td>
+</tr>
+<tr>
+<td>.npmignore</td>
+<td>发布时忽略的文件（可忽略）</td>
+</tr>
+<tr>
+<td>_config.landscape.yml</td>
+<td>主题的配置文件</td>
+</tr>
+<tr>
+<td>config.yml</td>
+<td>博客的配置文件</td>
+</tr>
+<tr>
+<td>package.json</td>
+<td>项目名称、描述、版本、运行和开发等信</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>打开<strong>Open Git Bash here输入</strong><code>hexo cl &amp;&amp; hexo s</code>启动项目</p>
+</li>
+<li><p>打开浏览器，输入地址：<strong><a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a></strong> ，看到视频里的效果，说明你的博客已经构建成功了。</p>
+</li>
+</ul>
+<h2 id="10-将静态博客挂载到-GitHub-Pages"><a href="#10-将静态博客挂载到-GitHub-Pages" class="headerlink" title="10. 将静态博客挂载到 GitHub Pages"></a>10. 将静态博客挂载到 GitHub Pages</h2><ul>
+<li>安装 <strong>hexo-deployer-git</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>修改 <code>_config.yml</code> 文件</p>
+</li>
+<li><p><strong>在blog-demo目录下的_config.yml，就是整个Hexo框架的配置文件了。可以在里面修改大部分的配置。详细可参考官方的配置描述。</strong></p>
+</li>
+<li><p><strong>修改最后一行的配置，将repository修改为你自己的github项目地址即可，还有分支要改为<code>main</code>代表主分支（注意缩进）</strong></p>
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:你的Github名/你的Github名.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改好配置后，运行如下命令，将代码部署到 GitHub（Hexo三连）。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// Git BASH终端</span><br><span class="line">hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy  </span><br><span class="line"></span><br><span class="line">// 或者</span><br><span class="line"></span><br><span class="line">// VSCODE终端</span><br><span class="line">hexo cl; hexo g; hexo d</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><em><strong>hexo clean</strong></em>：删除之前生成的文件，可以用<code>hexo cl</code>缩写。</li>
+<li><em><strong>hexo generate</strong></em>：生成静态文章，可以用<code>hexo g</code>缩写</li>
+<li><em><strong>hexo deploy</strong></em>：部署文章，可以用<code>hexo d</code>缩写</li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/18b052b831896bf00cfc4.jpg" alt="PNG"></p>
+<ul>
+<li><strong>注意：<code>deploy</code>时可能要你输入 <code>username</code> 和 <code>password</code>。</strong></li>
+<li><strong>如果出现<code>Deploy done</code>，则说明部署成功了。</strong></li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/93a5d61648491a5278556.jpg" alt="PNG"></p>
+<h3 id="稍等两分钟，打开浏览器访问：https-你Github的用户名-github-io-，这时候我们就可以看到博客内容了。"><a href="#稍等两分钟，打开浏览器访问：https-你Github的用户名-github-io-，这时候我们就可以看到博客内容了。" class="headerlink" title="稍等两分钟，打开浏览器访问：https:&#x2F;&#x2F;你Github的用户名.github.io ，这时候我们就可以看到博客内容了。"></a>稍等两分钟，打开浏览器访问：https:&#x2F;&#x2F;你Github的用户名.github.io ，这时候我们就可以看到博客内容了。</h3><p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/1239b1270fcdc8bd896a6.jpg" alt="PNG"></p>
+<hr>
+<h2 id="12-将静态博客挂载到-Cloudflare-Pages"><a href="#12-将静态博客挂载到-Cloudflare-Pages" class="headerlink" title="12. 将静态博客挂载到 Cloudflare Pages"></a>12. 将静态博客挂载到 Cloudflare Pages</h2><ul>
+<li>在 <strong>Workers</strong> 和 <strong>Pages</strong> 中选择 <code>Pages</code> 的 连接到 <code>Git</code></li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/b3eae4e84c4c7c31af665.jpg" alt="PNG"></p>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/440581264cb313ed77e75.jpg" alt="PNG"></p>
+<ul>
+<li>然后登录你<code>Blog</code>仓库对应的<code>GitHub</code>帐号</li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/733c0a673bb66670b7ca1.jpg" alt="PNG"></p>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/8fb282e32991167a98f57.jpg" alt="PNG"></p>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/60cca5e2200e260327227.jpg" alt="PNG"></p>
+<ul>
+<li>点击<code>保存并部署</code>后等待部署完成。</li>
+<li>提示成功！您的项目已部署到以下区域：全球后，浏览器访问：<code>Cloudflare Pages</code> 分配的域名 ，这时候我们就可以看到博客内容了。</li>
+<li>当然也可以添加自己的自定义域名</li>
+</ul>
+<p><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.090227.xyz/file/2c9ce4b9b67c09376bb91.jpg" alt="PNG"></p>
+<ul>
+<li><strong>这时你也就可以将你的<code>&lt;用户名&gt;.github.io</code>的仓库设置为<code>Private</code>私库了</strong></li>
+</ul>
+<hr>
+<h2 id="13-如何使用"><a href="#13-如何使用" class="headerlink" title="13. 如何使用"></a>13. 如何使用</h2><ul>
+<li>新建一篇博文</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new 这是一篇新的博文</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>然后用文本编辑器去编辑<code>_posts/</code>这是一篇新的博文.md里的内容即可，注意要使用<code>Markdown</code>格式书写。<br>详细使用方法可以查阅 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/writing">https://hexo.io/zh-cn/docs/writing</a></p>
+</li>
+<li><p>编辑完文章保存后可以使用如下命令，生成本地页面 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> ，进行预览</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// Git BASH终端</span><br><span class="line">hexo cl &amp;&amp; hexo s</span><br><span class="line"></span><br><span class="line">// 或者</span><br><span class="line"></span><br><span class="line">// VSCODE终端</span><br><span class="line">hexo cl; hexo s</span><br></pre></td></tr></table></figure>
+<ul>
+<li>确认无误后使用以下命令，将本地文章推送至<code>GitHub</code>仓库即可</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// Git BASH终端</span><br><span class="line">hexo cl &amp;&amp; hexo g &amp;&amp; hexo d</span><br><span class="line"></span><br><span class="line">// 或者</span><br><span class="line"></span><br><span class="line">// VSCODE终端</span><br><span class="line">hexo cl; hexo g; hexo d</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="VSCODE-终端首次执行报错-使用管理员身份打开-powershell-输入以下命令"><a href="#VSCODE-终端首次执行报错-使用管理员身份打开-powershell-输入以下命令" class="headerlink" title="VSCODE 终端首次执行报错 使用管理员身份打开 powershell ,输入以下命令"></a>VSCODE 终端首次执行报错 使用管理员身份打开 <code>powershell</code> ,输入以下命令</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> RemoteSigned</span><br></pre></td></tr></table></figure>
+
+<h3 id="Hexo-部分数据无法更新，或者新生成的文件与上一版本完全相同，请清理缓存后重试。"><a href="#Hexo-部分数据无法更新，或者新生成的文件与上一版本完全相同，请清理缓存后重试。" class="headerlink" title="Hexo 部分数据无法更新，或者新生成的文件与上一版本完全相同，请清理缓存后重试。"></a>Hexo 部分数据无法更新，或者新生成的文件与上一版本完全相同，请清理缓存后重试。</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<hr>
+<div calss='anzhiyu-tag-link'><a class="tag-Link" target="_blank" href="https://blog.cmliussss.com/p/HexoBlogNo1/">
+    <div class="tag-link-tips">引用站外地址</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" style="">
+          <i class="anzhiyufont anzhiyu-icon-link" style=""></i>
+        </div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">本博文转载自</div>
+            <div class="tag-link-sitename">CM喂饭大佬</div>
+        </div>
+        <i class="anzhiyufont anzhiyu-icon-angle-right"></i>
+    </div>
+    </a></div>
+<h3 id="CM大佬-Blog-https-blog-cmliussss-com"><a href="#CM大佬-Blog-https-blog-cmliussss-com" class="headerlink" title="CM大佬 :  Blog  https://blog.cmliussss.com"></a>CM大佬 :  <strong>Blog</strong>  <a target="_blank" rel="noopener" href="https://blog.cmliussss.com/">https://blog.cmliussss.com</a></h3><h3 id="CM大佬-YouTobe-https-www-youtube-com-CMLiussss"><a href="#CM大佬-YouTobe-https-www-youtube-com-CMLiussss" class="headerlink" title="CM大佬 : YouTobe https://www.youtube.com/@CMLiussss"></a>CM大佬 : <strong>YouTobe</strong> <a target="_blank" rel="noopener" href="https://www.youtube.com/@CMLiussss">https://www.youtube.com/@CMLiussss</a></h3><h3 id="项目地址-Hexo-https-github-com-hexojs-hexo"><a href="#项目地址-Hexo-https-github-com-hexojs-hexo" class="headerlink" title="项目地址 : Hexo https://github.com/hexojs/hexo"></a>项目地址 : <strong>Hexo</strong> <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo">https://github.com/hexojs/hexo</a></h3><h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><strong><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">https://hexo.io/zh-cn/</a></strong><br><strong><a target="_blank" rel="noopener" href="https://www.fomal.cc/posts/e593433d.html">https://www.fomal.cc/posts/e593433d.html</a></strong><br><strong><a target="_blank" rel="noopener" href="https://docs.anheyu.com/">https://docs.anheyu.com/</a></strong></p>
+<h3 id="主题美化"><a href="#主题美化" class="headerlink" title="主题美化"></a>主题美化</h3><ul>
+<li>项目地址 : <a target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">https://github.com/anzhiyu-c/hexo-theme-anzhiyu</a></li>
+<li>官方文档 : <a target="_blank" rel="noopener" href="https://docs.anheyu.com/initall.html">https://docs.anheyu.com/initall.html</a></li>
+</ul>
+<h3 id="主题美化参考资料"><a href="#主题美化参考资料" class="headerlink" title="主题美化参考资料"></a>主题美化参考资料</h3><p><a target="_blank" rel="noopener" href="https://docs.anheyu.com/initall.html">https://docs.anheyu.com/initall.html</a><br><a target="_blank" rel="noopener" href="https://www.fomal.cc/posts/4aa2d85f.html">https://www.fomal.cc/posts/4aa2d85f.html</a><br><a target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu/blob/dev/README.md?plain=1">https://github.com/anzhiyu-c/hexo-theme-anzhiyu/blob/dev/README.md?plain=1</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/COCO56/article/details/103840966">https://blog.csdn.net/COCO56/article/details/103840966</a></p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/about/" title="头像"><img class="post-copyright__author_img_back" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://cdn.cbd.int/naokuo-blog-static@1.0.12/img/author_front.webp" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://cdn.cbd.int/naokuo-blog-static@1.0.12/img/author_front.webp" title="头像" alt="头像"></a><div class="post-copyright__author_name">CM喂饭干货满满</div><div class="post-copyright__author_desc">涂山红红</div></div><div class="post-copyright__post__info"><a class="post-copyright__reprint" title="该文章为转载文章，注意版权协议" href="https://hexo.200038.xyz/jinx/HexoBlog/">转载</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://hexo.200038.xyz/jinx/HexoBlog/')">Hexo博客搭建 Hexo + GitHub Pages + Cloudflare Pages 搭建教程</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://hexo.200038.xyz/jinx/HexoBlog/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=Hexo博客搭建 Hexo + GitHub Pages + Cloudflare Pages 搭建教程&amp;url=https://hexo.200038.xyz/jinx/HexoBlog/&amp;pic=https://serv.200038.xyz/2024/09/19/722451.webp" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hexo.200038.xyz" target="_blank">东方月初</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/Hexo/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Hexo<span class="tagsPageCount">8</span></a><a class="post-meta__box__tags" href="/tags/Github/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Github<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>个人博客<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/Cloudflare-pages/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Cloudflare pages<span class="tagsPageCount">7</span></a><a class="post-meta__box__tags" href="/tags/Noge-js/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Noge.js<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/Git/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Git<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/Markdown/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Markdown<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>静态网站<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://img.hexo.nyc.mn/22.avif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/jinx/Serv00Build-Uptime-Kuma/"><img class="prev-cover" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://serv.200038.xyz/2024/09/18/623949.webp" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Serv00 搭建网站监控 Uptime-Kuma</div></div></a></div><div class="next-post pull-right"><a href="/jinx/cfemail/"><img class="next-cover" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://serv.200038.xyz/2024/09/19/783646.webp" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">利用cloudflare+work+pages部署一个简易的临时邮件系统</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/jinx/VPS-Order/" title="VPS命令"><img class="cover" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://serv.200038.xyz/2024/09/28/452672.webp" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-07-06</div><div class="title">VPS命令</div></div></a></div><div><a href="/jinx/HexoTagLabel/" title="安知鱼主题标签 Tag Plugins"><img class="cover" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://serv.200038.xyz/2024/09/19/606135.webp" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-22</div><div class="title">安知鱼主题标签 Tag Plugins</div></div></a></div><div><a href="/jinx/commerts/" title="anzhiyu 主题 留言板页添加全屏弹幕"><img class="cover" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://serv.200038.xyz/2024/09/29/316116.webp" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-09-29</div><div class="title">anzhiyu 主题 留言板页添加全屏弹幕</div></div></a></div><div><a href="/jinx/hexo-history-calendar/" title="hexo-history-calendar 那年今日侧边栏卡片"><img class="cover" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://serv.200038.xyz/2024/09/19/784056.webp" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-24</div><div class="title">hexo-history-calendar 那年今日侧边栏卡片</div></div></a></div><div><a href="/jinx/Hexobeautify/" title="Hexo安知鱼首页加载动画"><img class="cover" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://serv.200038.xyz/2024/09/19/895251.webp" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-20</div><div class="title">Hexo安知鱼首页加载动画</div></div></a></div><div><a href="/jinx/beiwang/" title="个人安知鱼主题安装备忘"><img class="cover" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/niceao/img/2024/10/20/426591.webp" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-08-08</div><div class="title">个人安知鱼主题安装备忘</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)" style="display: none">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://serv.200038.xyz/2024/09/19/040857.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description">我是一位正在努力学习的小白。感谢你的到访，希望这里可以有你需要的东西</div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">东方月初</h1><div class="author-info__desc">涂山红红</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/damizai" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/294669683" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-revolve"><div class="twopeople" style="margin: 0;align-items: center;justify-content: center;text-align: center; background: linear-gradient(to bottom, #c7abd4, #c7abd4);"><div class="container" style="height: 50px; margin: 0; align-items: center; justify-content: center; text-align: center;"><h2>学习的小白,欢迎互换<a href="https://hexo.200038.xyz/link/">友链.</a></h2></div><canvas class="illo" width="600" height="600" style="display: block;margin: 0 auto;cursor: move;max-width: 200px; max-height: 200px; touch-action: none; width: 480px; height: 480px;"></canvas></div></div><script src="https://npm.elemecdn.com/justlovesmile-static/js/twopeople1.js"></script>
+<script src="https://npm.elemecdn.com/justlovesmile-static/js/zdog.dist.js"></script>
+<script id="rendered-js" src="https://npm.elemecdn.com/justlovesmile-static/js/twopeople.js"></script><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D%E4%BA%86%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%8C%E5%B9%B6%E5%B0%86%E5%85%B6%E9%83%A8%E7%BD%B2%E5%88%B0GitHub-Pages%E5%92%8CCloudflare-Pages%E4%B8%8A%E3%80%82%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="toc-text">本文详细介绍了如何使用Hexo框架搭建一个个人博客，并将其部署到GitHub Pages和Cloudflare Pages上。主要内容包括：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%99%E4%B8%AA%E6%95%99%E7%A8%8B%E9%80%82%E5%90%88%E9%82%A3%E4%BA%9B%E6%83%B3%E8%A6%81%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%8C%E4%BD%86%E5%8F%88%E4%B8%8D%E6%83%B3%E8%8A%B1%E8%B4%B9%E5%A4%AA%E5%A4%9A%E6%88%90%E6%9C%AC%E7%9A%84%E4%BA%BA%E3%80%82%E9%80%9A%E8%BF%87%E4%BD%BF%E7%94%A8Hexo%E3%80%81GitHub%E5%92%8CCloudflare%E7%9A%84%E5%85%8D%E8%B4%B9%E6%9C%8D%E5%8A%A1%EF%BC%8C%E6%82%A8%E5%8F%AF%E4%BB%A5%E8%BD%BB%E6%9D%BE%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%AB%98%E6%95%88%E3%80%81%E7%AE%80%E6%B4%81%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E3%80%82"><span class="toc-text">这个教程适合那些想要快速搭建个人博客，但又不想花费太多成本的人。通过使用Hexo、GitHub和Cloudflare的免费服务，您可以轻松创建一个高效、简洁的博客网站。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">1. 准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%BD%AF%E4%BB%B6%E6%94%AF%E6%8C%81"><span class="toc-text">2. 软件支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%AE%89%E8%A3%85-Node"><span class="toc-text">3.1.安装 Node</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%AE%89%E8%A3%85-Git"><span class="toc-text">4.1.安装 Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E9%85%8D%E7%BD%AE-Git-%E5%AF%86%E9%92%A5%E5%B9%B6%E8%BF%9E%E6%8E%A5%E8%87%B3-Github"><span class="toc-text">5. 配置 Git 密钥并连接至 Github</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8-Git-%E5%91%BD%E4%BB%A4"><span class="toc-text">常用 Git 命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E9%82%AE%E7%AE%B1"><span class="toc-text">6. 配置用户名和邮箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E9%85%8D%E7%BD%AE%E5%85%AC%E9%92%A5%E8%BF%9E%E6%8E%A5Github"><span class="toc-text">7. 配置公钥连接Github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BA%E7%8E%B0%E8%BF%9E%E6%8E%A5%E5%88%B0%E8%B4%A6%E6%88%B7%E7%9A%84%E4%BF%A1%E6%81%AF%EF%BC%8C%E8%AF%B4%E6%98%8E%E5%B7%B2%E7%BB%8F%E5%A4%A7%E5%8A%9F%E5%91%8A%E6%88%90%EF%BC%8C%E8%87%B3%E6%AD%A4%E5%AE%8C%E6%88%90%E4%BA%86%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C%E3%80%82"><span class="toc-text">出现连接到账户的信息，说明已经大功告成，至此完成了环境准备工作。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%88%9B%E5%BB%BAGitHub-io%E4%BB%93%E5%BA%93"><span class="toc-text">8. 创建GitHub.io仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%88%9D%E5%A7%8B%E5%8C%96-Hexo-%E5%8D%9A%E5%AE%A2"><span class="toc-text">9. 初始化 Hexo 博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E5%B0%86%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%8C%82%E8%BD%BD%E5%88%B0-GitHub-Pages"><span class="toc-text">10. 将静态博客挂载到 GitHub Pages</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8D%E7%AD%89%E4%B8%A4%E5%88%86%E9%92%9F%EF%BC%8C%E6%89%93%E5%BC%80%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AE%EF%BC%9Ahttps-%E4%BD%A0Github%E7%9A%84%E7%94%A8%E6%88%B7%E5%90%8D-github-io-%EF%BC%8C%E8%BF%99%E6%97%B6%E5%80%99%E6%88%91%E4%BB%AC%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E4%BA%86%E3%80%82"><span class="toc-text">稍等两分钟，打开浏览器访问：https:&#x2F;&#x2F;你Github的用户名.github.io ，这时候我们就可以看到博客内容了。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%B0%86%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E6%8C%82%E8%BD%BD%E5%88%B0-Cloudflare-Pages"><span class="toc-text">12. 将静态博客挂载到 Cloudflare Pages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="toc-text">13. 如何使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#VSCODE-%E7%BB%88%E7%AB%AF%E9%A6%96%E6%AC%A1%E6%89%A7%E8%A1%8C%E6%8A%A5%E9%94%99-%E4%BD%BF%E7%94%A8%E7%AE%A1%E7%90%86%E5%91%98%E8%BA%AB%E4%BB%BD%E6%89%93%E5%BC%80-powershell-%E8%BE%93%E5%85%A5%E4%BB%A5%E4%B8%8B%E5%91%BD%E4%BB%A4"><span class="toc-text">VSCODE 终端首次执行报错 使用管理员身份打开 powershell ,输入以下命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-%E9%83%A8%E5%88%86%E6%95%B0%E6%8D%AE%E6%97%A0%E6%B3%95%E6%9B%B4%E6%96%B0%EF%BC%8C%E6%88%96%E8%80%85%E6%96%B0%E7%94%9F%E6%88%90%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8E%E4%B8%8A%E4%B8%80%E7%89%88%E6%9C%AC%E5%AE%8C%E5%85%A8%E7%9B%B8%E5%90%8C%EF%BC%8C%E8%AF%B7%E6%B8%85%E7%90%86%E7%BC%93%E5%AD%98%E5%90%8E%E9%87%8D%E8%AF%95%E3%80%82"><span class="toc-text">Hexo 部分数据无法更新，或者新生成的文件与上一版本完全相同，请清理缓存后重试。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CM%E5%A4%A7%E4%BD%AC-Blog-https-blog-cmliussss-com"><span class="toc-text">CM大佬 :  Blog  https:&#x2F;&#x2F;blog.cmliussss.com</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CM%E5%A4%A7%E4%BD%AC-YouTobe-https-www-youtube-com-CMLiussss"><span class="toc-text">CM大佬 : YouTobe https:&#x2F;&#x2F;www.youtube.com&#x2F;@CMLiussss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80-Hexo-https-github-com-hexojs-hexo"><span class="toc-text">项目地址 : Hexo https:&#x2F;&#x2F;github.com&#x2F;hexojs&#x2F;hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96"><span class="toc-text">主题美化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">主题美化参考资料</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/jinx/fastlycdn/" title="使用 FastyCDN 加速 Cloudflare部署的博客项目"><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.hexo.nyc.mn/22.avif" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp'" alt="使用 FastyCDN 加速 Cloudflare部署的博客项目"/></a><div class="content"><a class="title" href="/jinx/fastlycdn/" title="使用 FastyCDN 加速 Cloudflare部署的博客项目">使用 FastyCDN 加速 Cloudflare部署的博客项目</a><time datetime="2024-10-13T14:28:16.000Z" title="发表于 2024-10-13 22:28:16">2024-10-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/jinx/ipshengcheng/" title="基于IP地址的真实地址生成器"><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://serv.200038.xyz/2024/10/12/850208.webp" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp'" alt="基于IP地址的真实地址生成器"/></a><div class="content"><a class="title" href="/jinx/ipshengcheng/" title="基于IP地址的真实地址生成器">基于IP地址的真实地址生成器</a><time datetime="2024-10-10T13:32:46.000Z" title="发表于 2024-10-10 21:32:46">2024-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/jinx/commerts/" title="anzhiyu 主题 留言板页添加全屏弹幕"><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://serv.200038.xyz/2024/09/29/316116.webp" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp'" alt="anzhiyu 主题 留言板页添加全屏弹幕"/></a><div class="content"><a class="title" href="/jinx/commerts/" title="anzhiyu 主题 留言板页添加全屏弹幕">anzhiyu 主题 留言板页添加全屏弹幕</a><time datetime="2024-09-29T09:30:57.000Z" title="发表于 2024-09-29 17:30:57">2024-09-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/jinx/serv00Alist/" title="Serv00搭建Alist个人网盘"><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://serv.200038.xyz/2024/09/19/857815.webp" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp'" alt="Serv00搭建Alist个人网盘"/></a><div class="content"><a class="title" href="/jinx/serv00Alist/" title="Serv00搭建Alist个人网盘">Serv00搭建Alist个人网盘</a><time datetime="2024-09-22T15:17:13.000Z" title="发表于 2024-09-22 23:17:13">2024-09-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/jinx/roim-picximg/" title="Cloudflare + pages +R2 部署一个图床"><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://serv.200038.xyz/2024/09/19/064237.webp" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp'" alt="Cloudflare + pages +R2 部署一个图床"/></a><div class="content"><a class="title" href="/jinx/roim-picximg/" title="Cloudflare + pages +R2 部署一个图床">Cloudflare + pages +R2 部署一个图床</a><time datetime="2024-09-13T18:11:15.000Z" title="发表于 2024-09-14 02:11:15">2024-09-14</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="/weilai2028@gmail.com" title="Email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://weibo.com/u/1937092692" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><a class="deal_link" href="/atom.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://serv.200038.xyz/2024/09/19/040857.webp" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/damizai" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/294669683" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://v.douyin.com/iMREVjAE/ 9@4.com :9pm" title="抖音"><i class="anzhiyufont anzhiyu-icon-tiktok"></i></a></div><div id="workboard"><img class="workSituationImg boardsign" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.shields.io/badge/jin_x-you_like-blue" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"/><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://www.foreverblog.cn/">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">SSH工具</div><div class="footer-links"><a class="footer-item" title="FINSHELL" target="_blank" rel="noopener" href="https://www.hostbuf.com/t/988.html">FINSHELL</a><a class="footer-item" title="XSHELL" target="_blank" rel="noopener" href="https://www.xshell.com/zh/free-for-home-school/">XSHELL</a><a class="footer-item" title="electerm" target="_blank" rel="noopener" href="https://electerm.html5beta.com/">electerm</a></div></div><div class="footer-group"><div class="footer-title">域名申请</div><div class="footer-links"><a class="footer-item" title="Spaceship" target="_blank" rel="noopener" href="https://www.spaceship.com/">Spaceship</a><a class="footer-item" title="Namesilo" target="_blank" rel="noopener" href="https://www.namesilo.com/">Namesilo</a><a class="footer-item" title="US.kg" target="_blank" rel="noopener" href="https://register.us.kg/">US.kg</a></div></div><div class="footer-group"><div class="footer-title">VPS</div><div class="footer-links"><a class="footer-item" title="VMshell" target="_blank" rel="noopener" href="https://vmshell.com/cart.php?a=confproduct&amp;i=0">VMshell</a><a class="footer-item" title="AC云" target="_blank" rel="noopener" href="https://www.anyfastcloud.com/">AC云</a><a class="footer-item" title="ColoCrossing" target="_blank" rel="noopener" href="https://cloud.colocrossing.com/cart.php?a=confproduct&amp;i=1">ColoCrossing</a></div></div><div class="footer-group"><div class="footer-title">监控项目</div><div class="footer-links"><a class="footer-item" title="CF-workers-status-page" target="_blank" rel="noopener" href="https://github.com/eidam/cf-workers-status-page">CF-workers-status-page</a><a class="footer-item" title="UptimeFlare" target="_blank" rel="noopener" href="https://github.com/lyc8503/UptimeFlare">UptimeFlare</a><a class="footer-item" title="uptime-kuma" target="_blank" rel="noopener" href="https://github.com/kakluo/uptime-kuma">uptime-kuma</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title="博客框架为Hexo_v5.4.0"><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v5.4.0"/></a><a class="github-badge" target="_blank" href="https://blog.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://hexo.200038.xyz/" style="margin-inline:5px" data-title="本站使用Cloudflare为静态资源提供CDN加速" title="本站使用Cloudflare为静态资源提供CDN加速"><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.shields.io/badge/%E2%98%81%EF%B8%8FCDN-Cloudflare-f4822f" alt="本站使用Cloudflare为静态资源提供CDN加速"/></a><a class="github-badge" target="_blank" href="https://fastly.hexo.200038.xyz/" style="margin-inline:5px" data-title="本站使用Fastly为静态资源提供CDN加速" title="本站使用Fastly为静态资源提供CDN加速"><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://img.shields.io/badge/%E2%98%81%EF%B8%8FCDN-Fastly-e87041" alt="本站使用Fastly为静态资源提供CDN加速"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2024 By <a class="footer-bar-link" href="/" title="东方月初" target="_blank">东方月初</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20249080" title="萌ICP备-20249080号">萌ICP备-20249080号</a><a class="footer-bar-link cc" href="/copyright" title="cc协议"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-by-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nc-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nd-line"></i></a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">52</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">4</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "https://cdn.jsdelivr.net/gh/niceao/img/2024/10/27/378607.gif" onerror="this.onerror=null,this.src=&quot;https://cdn.jsdelivr.net/gh/niceao/img/2024/09/19/688230.webp&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/messages/"><i class="anzhiyufont anzhiyu-icon-comments faa-tada" style="font-size: 0.9em;"></i><span> 最新评论</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://aibing.nicea.us.kg/"><i class="anzhiyufont anzhiyu-icon-keyboard faa-tada" style="font-size: 0.9em;"></i><span> AIBING</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://jinx.acea.us.kg"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 影视站</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://dongfang.serv00.net"><i class="anzhiyufont anzhiyu-icon-history faa-tada" style="font-size: 0.9em;"></i><span> 哪吒监控</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://status.caoni.nyc.mn/status/status"><i class="anzhiyufont anzhiyu-icon-history faa-tada" style="font-size: 0.9em;"></i><span> Uptime</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/websites/"><i class="anzhiyufont anzhiyu-icon-fire faa-tada" style="font-size: 0.9em;"></i><span> 网站收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/update/"><i class="anzhiyufont anzhiyu-icon-bolt faa-tada" style="font-size: 0.9em;"></i><span> 本站日志</span></a></li><li><a class="site-page child faa-parent animated-hover" target="_blank" rel="noopener" href="https://200038.xyz"><i class="anzhiyufont anzhiyu-icon-anzhiyu faa-tada" style="font-size: 0.9em;"></i><span> 个人主页</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Cloudflare-R2/" style="font-size: 0.88rem;">Cloudflare R2<sup>1</sup></a><a href="/tags/Cloudflare-Tunnels/" style="font-size: 0.88rem;">Cloudflare Tunnels<sup>1</sup></a><a href="/tags/Cloudflare-pages/" style="font-size: 0.88rem;">Cloudflare pages<sup>7</sup></a><a href="/tags/D1-R2/" style="font-size: 0.88rem;">D1 + R2<sup>1</sup></a><a href="/tags/Fastly-CDN/" style="font-size: 0.88rem;">Fastly CDN<sup>1</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>1</sup></a><a href="/tags/GitHub/" style="font-size: 0.88rem;">GitHub<sup>1</sup></a><a href="/tags/Github/" style="font-size: 0.88rem;">Github<sup>1</sup></a><a href="/tags/Hexo/" style="font-size: 0.88rem;">Hexo<sup>8</sup></a><a href="/tags/Hexo%E7%BE%8E%E5%8C%96/" style="font-size: 0.88rem;">Hexo美化<sup>2</sup></a><a href="/tags/LOL/" style="font-size: 0.88rem;">LOL<sup>1</sup></a><a href="/tags/Markdown/" style="font-size: 0.88rem;">Markdown<sup>1</sup></a><a href="/tags/Noge-js/" style="font-size: 0.88rem;">Noge.js<sup>1</sup></a><a href="/tags/PicGo-WebP-Cloud/" style="font-size: 0.88rem;">PicGo+WebP Cloud<sup>1</sup></a><a href="/tags/Rin/" style="font-size: 0.88rem;">Rin<sup>1</sup></a><a href="/tags/Serv00/" style="font-size: 0.88rem;">Serv00<sup>6</sup></a><a href="/tags/TCPping/" style="font-size: 0.88rem;">TCPping<sup>1</sup></a><a href="/tags/Tag-Plugins/" style="font-size: 0.88rem;">Tag Plugins<sup>2</sup></a><a href="/tags/VPSX-UI/" style="font-size: 0.88rem;">VPSX-UI<sup>1</sup></a><a href="/tags/VPSping/" style="font-size: 0.88rem;">VPSping<sup>1</sup></a><a href="/tags/VPS%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/" style="font-size: 0.88rem;">VPS命令操作<sup>1</sup></a><a href="/tags/VPS%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 0.88rem;">VPS工具箱<sup>1</sup></a><a href="/tags/VPS%E8%84%9A%E6%9C%AC/" style="font-size: 0.88rem;">VPS脚本<sup>2</sup></a><a href="/tags/Vercel/" style="font-size: 0.88rem;">Vercel<sup>1</sup></a><a href="/tags/X-ui/" style="font-size: 0.88rem;">X-ui<sup>1</sup></a><a href="/tags/npm%E5%91%BD%E4%BB%A4/" style="font-size: 0.88rem;">npm命令<sup>1</sup></a><a href="/tags/wrok/" style="font-size: 0.88rem;">wrok<sup>1</sup></a><a href="/tags/%E4%B8%80%E9%94%AE%E5%93%AA%E5%90%92/" style="font-size: 0.88rem;">一键哪吒<sup>1</sup></a><a href="/tags/%E4%B8%8D%E5%A4%AA%E5%85%A8/" style="font-size: 0.88rem;">不太全<sup>1</sup></a><a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 0.88rem;">个人博客<sup>1</sup></a><a href="/tags/%E4%B8%BB%E9%A2%98%E5%A4%87%E5%BF%98/" style="font-size: 0.88rem;">主题备忘<sup>1</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 0.88rem;">博客<sup>1</sup></a><a href="/tags/%E5%B0%8F%E9%9B%85Alist/" style="font-size: 0.88rem;">小雅Alist<sup>1</sup></a><a href="/tags/%E5%BD%B1%E8%A7%86%E7%AB%99%E6%90%AD%E5%BB%BA/" style="font-size: 0.88rem;">影视站搭建<sup>1</sup></a><a href="/tags/%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%93%AA%E5%90%92%E6%95%99%E7%A8%8B/" style="font-size: 0.88rem;">最简单的哪吒教程<sup>1</sup></a><a href="/tags/%E6%A0%87%E7%AD%BE%E5%86%99%E6%B3%95/" style="font-size: 0.88rem;">标签写法<sup>1</sup></a><a href="/tags/%E7%95%99%E8%A8%80%E6%9D%BF/" style="font-size: 0.88rem;">留言板<sup>1</sup></a><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%91%E6%8E%A7/" style="font-size: 0.88rem;">网站监控<sup>1</sup></a><a href="/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/" style="font-size: 0.88rem;">静态网站<sup>1</sup></a><a href="/tags/%E9%A6%96%E9%A1%B5%E5%8A%A0%E8%BD%BD/" style="font-size: 0.88rem;">首页加载<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><a id="switch-commentBarrage" href="javascript:anzhiyu.switchCommentBarrage();" title="开关弹幕"><i class="anzhiyufont anzhiyu-icon-danmu"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.8"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("07/05/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2024 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 东方月初 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("07/05/2024 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "https://img.shields.io/badge/jin_x-you_like-blue";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.cbd.int/mermaid@10.2.4/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  anzhiyu.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://weilai.us.kg',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.39/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://weilai.us.kg',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"><script async src="/js/anzhiyu/comment_barrage.js"></script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://weilai.us.kg',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.39/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script src="/static/info-ip.min.js"></script><script src="/static/messages/messages.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><script>//- 留言板页面弹幕
+window.addEventListener('load', () => {
+  const getnaokuo_danmu = () => {
+    if (!window.location.pathname.startsWith('/comments/')) return; //- 判断是否是留言板页面
+    const naokuo_danmu = async () => {
+      const Danmaku = new EasyDanmaku({
+        page: '/comments/', //- 即留言板地址
+        el: '#danmu-wrap', //- 弹幕挂载节点
+        line: 6, //- 弹幕行数
+        speed: 20, //- 弹幕播放速度
+        hover: true, //- 鼠标hover时是否暂停播放弹幕
+        loop: false, //- 开启循环播放
+        colourful: true, //- 开启彩色弹幕
+        coefficient: 1.38, //- 弹幕密度系数
+        runtime: 10, //- 循环弹幕播放时长
+      });
+      try {
+        let danmuStore = saveToLocal.get('twikoo-danmu');
+        if (!danmuStore) {
+          const options = {
+            method: "POST",
+            body: JSON.stringify({
+              "event": "GET_RECENT_COMMENTS",
+              "includeReply": false,
+              "pageSize": 100
+            }),
+            headers: { 'Content-Type': 'application/json' }
+          }
+          danmuStore = [];
+          const response = await fetch(`https://weilai.us.kg`, options);
+          if (response.ok) {
+            const { data } = await response.json();
+            //- console.info(data);
+            data.forEach(i => {
+              if (i.avatar == undefined) i.avatar = 'https://cravatar.cn/avatar/d615d5793929e8c7d70eab5f00f7f5f1?d=mp'
+              danmuStore.push({ avatar: i.avatar, content: i.nick + '：' + formatDanmaku(i.comment), url: i.url + '#' + i.id })
+            });
+            Danmaku.batchSend(danmuStore, true);
+            saveToLocal.set('twikoo-danmu', danmuStore, 0.5)
+          }
+          //- 格式化评论
+          function formatDanmaku(str) {
+            str = str.replace(/<\/*br>|[\s\uFEFF\xA0]+/g, '');
+            str = str.replace(/<img.*?>/g, '[图片]');
+            str = str.replace(/<a.*?>.*?<\/a>/g, '[链接]');
+            str = str.replace(/<pre.*?>.*?<\/pre>/g, '[代码块]');
+            str = str.replace(/<.*?>/g, '');
+            return str
+          }
+        } else {
+          Danmaku.batchSend(danmuStore, true);
+        }
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      }
+
+      document.getElementById('danmu-Btn') && (document.getElementById('danmu-Btn').innerHTML = `<button class="hide-Btn" onclick="document.getElementById('danmu-wrap').classList.remove('hide-danmu')">显示弹幕</button> <button class="hide-Btn" onclick="document.getElementById('danmu-wrap').classList.add('hide-danmu')">隐藏弹幕</button>`)
+    }
+    (async () => {
+      if (typeof EasyDanmaku === 'function') {
+        await naokuo_danmu();
+      } else {
+        const easyDanmakuScript = await getScript('https://npm.onmicrosoft.cn/naokuo-blog@1.2.12/js/easy-Danmaku.js');
+        if (typeof EasyDanmaku === 'function') {
+          await naokuo_danmu();
+        } else {
+          console.error('EasyDanmaku function not found even after loading the script.');
+        }
+      }
+    })();
+  }
+  getnaokuo_danmu()
+  document.addEventListener('pjax:complete', getnaokuo_danmu)
+})</script><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
