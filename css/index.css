@@ -10185,23 +10185,6 @@ body[data-type="websites"] #webSites .flexcard-flink-list > a:hover::before {
   -ms-flex-direction: column;
   flex-direction: column;
 }
-#aside-content >.card-widget.card-revolve {
-  text-align: left;
-  font-size: 12px;
-  margin-top: 20px;
-  padding: 0px 0px;
-  border-radius: 12px;
-  width: 100%;
-  background: -webkit-linear-gradient(top, #c7abd4, #c7abd4);
-  background: -moz-linear-gradient(top, #c7abd4, #c7abd4);
-  background: -o-linear-gradient(top, #c7abd4, #c7abd4);
-  background: -ms-linear-gradient(top, #c7abd4, #c7abd4);
-  background: linear-gradient(to bottom, #c7abd4, #c7abd4);
-}
-#aside-content >.card-widget.card-revolve a {
-  color: #42ef96;
-  text-decoration: none;
-}
 #aside-content >.card-widget.card-info {
   background: var(--anzhiyu-card-bg);
   -webkit-box-shadow: var(--anzhiyu-shadow-black);
