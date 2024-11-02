@@ -6088,6 +6088,23 @@ body[data-type='about'] #web_bg {
   margin: 6px 0;
   padding: 0.12em 0.4em 0.12em 1.4em;
 }
+body[data-type="statistics"] #page {
+  border: 0;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  background: 0 0 !important;
+}
+body[data-type="statistics"] .page-title {
+  display: none;
+}
+body[data-type="statistics"] #anzhiyu_charts {
+  margin: var(--album-spacing-xxl) 0 0;
+}
+body[data-type="statistics"] .author-content.author-content-item,
+body[data-type="statistics"] .banner-button-text {
+  color: var(--font-color) !important;
+}
 @media screen and (max-width: 768px) {
   .post .layout#content-inner {
     background: var(--anzhiyu-main);
