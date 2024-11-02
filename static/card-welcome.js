@@ -4,46 +4,14 @@ window.IP_CONFIG = {
 		lng: 108.941867, // 经度
 		lat: 34.23852100000001 // 纬度
 	},
-	SELECTORS: {
-		CARD_INFO: '.card-widget.card-info', // 插入来访者卡片信息的节点 下方插入
-		WELCOME_INFO: '#welcome-info' // IP和欢迎信息节点
-	},
-	TEMPLATES: {
-		CARD_HTML: `
-            <div class="item-headline">
-                <i class="fa-solid fa-user-large" style="font-size: 18px;color: red;"></i>
-                <span>欢迎来访者！</span>
-            </div>
-            <div class="item-content">
-                👋🏻 Hi，我是东方月初，欢迎来到我的小站😀！<br>
-                ❓ 如有问题欢迎评论区交流！<br>
-                😫 页面异常？尝试<kbd>Ctrl</kbd>+<kbd>F5</kbd><br>
-                📧 如需联系我：<a href="mailto:jinxcose@gmail.com"><b>发送邮件🚀</b></a>
-            </div>
-            <div id="welcome-info"></div>`
-	}
+	CACHE_DURATION: 1000 * 60 * 60, // 可配置缓存时间(默认1小时)
 };
 
 const insertAnnouncementComponent = () => {
-	// 只在首页插入
-	if (!isHomePage()) return;
-
-	const cardInfo = document.querySelector(IP_CONFIG.SELECTORS.CARD_INFO);
-	if (!cardInfo) return;
-
-	const ipInfoElement = createIpInfoElement();
-	cardInfo.parentNode.insertBefore(ipInfoElement, cardInfo.nextSibling);
 	fetchIpInfo();
 };
 
-const isHomePage = () => ['/', '/index.html'].includes(window.location.pathname);
-const createIpInfoElement = () => {
-	const element = document.createElement('div');
-	element.classList.add("card-widget", "card-welcome");
-	element.innerHTML = IP_CONFIG.TEMPLATES.CARD_HTML;
-	return element;
-};
-const getWelcomeInfoElement = () => document.querySelector(IP_CONFIG.SELECTORS.WELCOME_INFO);
+const getWelcomeInfoElement = () => document.querySelector('#welcome-info');
 
 const fetchIpData = async () => {
 	const response = await fetch(`https://api.76.al/api/ip/query?key=${encodeURIComponent(IP_CONFIG.API_KEY)}`);
@@ -103,9 +71,6 @@ const generateWelcomeMessage = (pos, dist, ipDisplay, country, prov, city) => `
 const addStyles = () => {
 	const style = document.createElement('style');
 	style.textContent = `
-        .item-content {
-            margin: 5px 0 10px 0;
-        }
         #welcome-info {
             user-select: none;
             display: flex;
@@ -113,6 +78,7 @@ const addStyles = () => {
             align-items: center;
             height: 212px;
             padding: 10px;
+            margin-top: 5px;
             border-radius: 12px;
             background-color: var(--anzhiyu-background);
             outline: 1px solid var(--anzhiyu-card-border);
@@ -217,16 +183,12 @@ const showLoadingSpinner = () => {
 };
 
 const IP_CACHE_KEY = 'ip_info_cache';
-const IP_CACHE_DURATION = 1000 * 60 * 60; // 1小时缓存
 const getIpInfoFromCache = () => {
 	const cached = localStorage.getItem(IP_CACHE_KEY);
 	if (!cached) return null;
 
-	const {
-		data,
-		timestamp
-	} = JSON.parse(cached);
-	if (Date.now() - timestamp > IP_CACHE_DURATION) {
+	const { data, timestamp } = JSON.parse(cached);
+	if (Date.now() - timestamp > IP_CONFIG.CACHE_DURATION) {
 		localStorage.removeItem(IP_CACHE_KEY);
 		return null;
 	}
@@ -247,7 +209,6 @@ const fetchIpInfo = async () => {
 
 	showLoadingSpinner();
 
-	// 检查缓存
 	const cachedData = getIpInfoFromCache();
 	if (cachedData) {
 		showWelcome(cachedData);
