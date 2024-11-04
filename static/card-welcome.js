@@ -1,13 +1,24 @@
 window.IP_CONFIG = {
 	API_KEY: 'qx9sB0WG5yYlZYuNZubjDm3w9m', // API密钥 申请地址：https://api.76.al/
 	BLOG_LOCATION: {
-		lng: 108.941867, // 经度
-		lat: 34.23852100000001 // 纬度
+        lng: 108.941867, // 经度
+        lat: 34.23852100000001 // 纬度
 	},
 	CACHE_DURATION: 1000 * 60 * 60, // 可配置缓存时间(默认1小时)
+	HOME_PAGE_ONLY: true, // 是否只在首页显示 开启后其它页面将不会显示这个容器
 };
 
 const insertAnnouncementComponent = () => {
+	// 获取所有公告卡片
+	const announcementCards = document.querySelectorAll('.card-widget.card-announcement');
+	if (!announcementCards.length) return;
+
+	if (IP_CONFIG.HOME_PAGE_ONLY && !isHomePage()) {
+		announcementCards.forEach(card => card.remove());
+		return;
+	}
+	
+	if (!document.querySelector('#welcome-info')) return;
 	fetchIpInfo();
 };
 
@@ -178,7 +189,8 @@ const handleLocationPermission = (permission) => {
 };
 
 const showLoadingSpinner = () => {
-	const welcomeInfoElement = document.getElementById("welcome-info"); 
+	const welcomeInfoElement = document.querySelector("#welcome-info");
+	if (!welcomeInfoElement) return;
 	welcomeInfoElement.innerHTML = '<div class="loading-spinner"></div>';
 };
 
@@ -328,80 +340,13 @@ const showErrorMessage = (message = '抱歉，无法获取信息') => {
 	document.getElementById('retry-button').addEventListener('click', fetchIpInfo);
 };
 
+const isHomePage = () => {
+	return window.location.pathname === '/' || window.location.pathname === '/index.html';
+};
+
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
 	addStyles();
 	insertAnnouncementComponent();
 	document.addEventListener('pjax:complete', insertAnnouncementComponent);
 });
-
-
-
-// 防恶意反代
-const allowedDomains = ['localhost', 'hexo.200038.xyz', 'blog.200038.xyz', 'fastly.hexo.200038.xyz'];
-
-if (!allowedDomains.includes(document.domain)) {
-  Snackbar.show({
-    text: decodeURI('您现在处于恶意镜像站中,即将跳转回源站!'),
-    pos: 'top-center',
-    actionText: '确定',
-    duration: 5000,
-    onActionClick: () => window.location.href = 'https://hexo.200038.xyz'
-  });
-
-  setTimeout(() => window.location.href = 'https://hexo.200038.xyz', 5000);
-}
-
-
-// 底部栏小动物
-function initFooterAnimal() {
-  const footerBar = document.querySelector('#footer-bar');
-  if (!footerBar) return console.error('找不到指定元素');
-
-  const footerAnimal = document.createElement('div');
-  footerAnimal.id = 'footer-animal';
-  footerAnimal.innerHTML = `
-      <img class="animal entered loaded"
-          src="https://cdn.jsdelivr.net/gh/niceao/img/2024/10/25/734866.webp"
-          alt="动物" />
-  `;
-  
-  footerBar.insertAdjacentElement('beforebegin', footerAnimal);
-
-  const style = document.createElement('style');
-  style.textContent = `
-      #footer-animal {
-          position: relative;
-      }
-      #footer-animal::before {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          width: 100%;
-          height: 36px;
-          background: url(https://cdn.jsdelivr.net/gh/niceao/img/2024/10/19/976313.webp) repeat center / auto 100%;
-          box-shadow: 0 4px 7px rgba(0,0,0,.15);
-      }
-      .animal {
-          position: relative;
-          max-width: min(974px, 100vw);
-          margin: 0 auto;
-          display: block;
-      }
-      #footer-bar {
-          margin-top: 0 !important;
-      }
-      @media screen and (max-width: 1023px) {
-          #footer-animal::before {
-              height: 4vw;
-          }
-      }
-      [data-theme=dark] #footer-animal {
-          filter: brightness(.8);
-      }
-  `;
-  document.head.appendChild(style);
-}
-
-document.addEventListener('DOMContentLoaded', initFooterAnimal);
-document.addEventListener('pjax:success', initFooterAnimal);

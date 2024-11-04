@@ -1,16 +1,3 @@
-/* 局部css优化 */
-
-.categoryBar-list {
-  max-height: 400px;
-}
-
-.clock-row {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-
-
 /*3s为加载动画的时间，1为加载动画的次数，ease-in-out为动画效果*/
 
 #page-header,
@@ -120,30 +107,6 @@ img {
     }
 }
 
-/* 首页文章的标签位置 */
-#recent-posts > .recent-post-item > .recent-post-info > .article-meta-wrap {
-    bottom: 15px!important;
-}
-
-/* 优化关于界面人生图片 */
-img.author-content-img.no-lightbox.entered.loaded {
-    filter: blur(0) brightness(.8);
-}
-
-/* 轮播下面导航栏分类优化 */
-#catalog-list,
-anzhiyu.barrageContent {
-    scrollbar-width: none;
-}
-
-/* 优化文章顶部分类和标签显示异常 */
-#post-firstinfo .meta-firstline span.post-meta-categories a.post-meta-categories {
-    background: rgb(107 107 107 / 50%)!important;
-}
-
-#post #post-info #post-firstinfo .meta-firstline .article-meta__tags {
-    color: #888!important;
-}
 
 /* 优化手机端文章页面边角露底色 */
 @media screen and (max-width: 768px) {
@@ -267,4 +230,3 @@ anzhiyu.barrageContent {
       box-shadow: 0 0 1px 1px #42ef5f
   }
 }
-
