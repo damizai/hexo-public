@@ -1,0 +1,219 @@
+/* 侧边评论 */
+.card-latest-comments .item-headline i {
+    color: var(--anzhiyu-main);
+  }
+  
+  .card-latest-comments .headline-right {
+    position: absolute;
+    right: 24px;
+    top: 20px;
+    transition: all 0.3s;
+    opacity: 0.6;
+  }
+  
+  .card-latest-comments .headline-right:hover {
+    color: var(--anzhiyu-main);
+    opacity: 1;
+    transform: rotate(90deg);
+  }
+  
+  .aside-list-author {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  height: 22px;
+  gap: 5px;
+  }
+  
+  .aside-list-date {
+    font-size: 0.7rem;
+    font-weight: normal;
+    margin-left: auto;
+  }
+  
+  .aside-list-content {
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+    line-height: 1.2;
+  }
+  
+  .aside-list-item:last-child {
+    margin-bottom: 0!important;
+  }
+  
+  [data-theme='dark'] .aside-list-item-right {
+    filter: brightness(0.95);
+  }
+  
+  
+  /* 侧边栏 */
+  #aside-content >.card-widget.card-info,
+  #aside-content .card-widget#card-wechat {
+      padding: 0!important;
+  }
+  #aside-content .card-widget {
+      padding: 15px!important;
+  }
+  
+  #aside-content .aside-list>.aside-list-item .thumbnail, 
+  #aside-content .aside-list>.aside-list-item .content {
+      width: 3.2em !important;
+      height: 3.2em !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+  }
+  
+  @media screen and (min-width: 1200px) {
+      #aside-content .aside-list > .aside-list-item:hover {
+          transform: scale(1)!important;
+      }
+  }
+
+
+/* 倒计时日历 */
+.card-countdown .item-content {
+  display: flex;
+}
+
+.cd-count-left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-right: 0.8rem;
+  line-height: 1.5;
+  align-items: center;
+  justify-content: center;
+}
+
+.cd-count-left .cd-text {
+  font-size: 14px;
+}
+
+.cd-count-left .cd-name {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.cd-count-left .cd-time {
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--anzhiyu-main);
+}
+
+.cd-count-left .cd-date {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.cd-count-left::after {
+  content: "";
+  position: absolute;
+  right: -0.8rem;
+  width: 2px;
+  height: 80%;
+  background-color: var(--anzhiyu-main);
+  opacity: 0.5;
+}
+
+.cd-count-right {
+  flex: 1;
+  margin-left: .8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cd-count-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 24px;
+}
+
+.cd-item-name {
+  font-size: 14px;
+  margin-right: 0.8rem;
+  white-space: nowrap;
+}
+
+.cd-item-progress {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  background-color: var(--anzhiyu-background);
+  overflow: hidden;
+}
+
+.cd-progress-bar {
+  height: 100%;
+  border-radius: 8px;
+  background-color: var(--anzhiyu-main);
+}
+
+.cd-percentage,
+.cd-remaining {
+  position: absolute;
+  font-size: 12px;
+  margin: 0 6px;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.cd-many {
+  color: #fff;
+}
+
+.cd-remaining {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+.card-countdown .item-content:hover .cd-remaining {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.card-countdown .item-content:hover .cd-percentage {
+  transform: translateX(-10px);
+  opacity: 0;
+}   
+
+
+/* 页脚动物 */
+#footer-animal {
+  position: relative;
+}
+#footer-animal::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 36px;
+  background: url(https://i1.wp.com/img.000.pe/i/2024/10/25/010116.webp) repeat center / auto 100%;
+  box-shadow: 0 4px 7px rgba(0,0,0,.15);
+}
+.animal {
+  position: relative;
+  max-width: min(974px, 100vw);
+  margin: 0 auto;
+  display: block;
+}
+#footer-bar {
+  margin-top: 0 !important;
+}
+@media screen and (max-width: 1023px) {
+  #footer-animal::before {
+      height: 4vw;
+  }
+}
+[data-theme=dark] #footer-animal {
+  filter: brightness(.8);
+}
