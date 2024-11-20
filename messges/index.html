@@ -815,7 +815,7 @@ window.addEventListener('load', () => {
       if (typeof EasyDanmaku === 'function') {
         await naokuo_danmu();
       } else {
-        const easyDanmakuScript = await getScript('https://cdn.jsdelivr.net/gh/niceao/niceao-cdn@main/hexo/js/danmu.js');
+        const easyDanmakuScript = await getScript('/static/danmu.js');
         if (typeof EasyDanmaku === 'function') {
           await naokuo_danmu();
         } else {

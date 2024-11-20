@@ -60,7 +60,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-11-20 21:00:23',
+  postUpdate: '2024-11-20 21:06:44',
   postMainColor: '',
 }</script><noscript><style type="text/css">
   #nav {
@@ -859,7 +859,7 @@ window.addEventListener('load', () => {
       if (typeof EasyDanmaku === 'function') {
         await naokuo_danmu();
       } else {
-        const easyDanmakuScript = await getScript('https://cdn.jsdelivr.net/gh/niceao/niceao-cdn@main/hexo/js/danmu.js');
+        const easyDanmakuScript = await getScript('/static/danmu.js');
         if (typeof EasyDanmaku === 'function') {
           await naokuo_danmu();
         } else {

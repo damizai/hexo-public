@@ -435,7 +435,7 @@ if (true) {
         radius: ['15%', '90%'],
         center: ['50%', '55%'],
         sort: 'desc',
-        data: [{"name":"学习中","value":10,"path":"categories/学习中/","id":"cm3pw5j5e000zciot5lmodhvq","parentId":"0"},{"name":"Cloudflare","value":7,"path":"categories/Cloudflare/","id":"cm3pw5j4x0004ciot3h4l97zu","parentId":"0"},{"name":"Hexo","value":6,"path":"categories/Hexo/","id":"cm3pw5j53000cciotefb2goty","parentId":"0"},{"name":"金克丝","value":2,"path":"categories/金克丝/","id":"cm3pw5j58000jciot9rw4h75b","parentId":"0"}],
+        data: [{"name":"学习中","value":10,"path":"categories/学习中/","id":"cm3pwdp1z000zczoka6kt599n","parentId":"0"},{"name":"Cloudflare","value":7,"path":"categories/Cloudflare/","id":"cm3pwdp1h0004czokd5k89qew","parentId":"0"},{"name":"Hexo","value":6,"path":"categories/Hexo/","id":"cm3pwdp1o000cczoka5big1bg","parentId":"0"},{"name":"金克丝","value":2,"path":"categories/金克丝/","id":"cm3pwdp1s000jczok66li9fgi","parentId":"0"}],
         itemStyle: {
           borderColor: '#fff',
           borderWidth: 2,
@@ -457,7 +457,7 @@ if (true) {
           color: color,
           formatter: '{b} : {c} ({d}%)'
         },
-        data: [{"name":"学习中","value":10,"path":"categories/学习中/","id":"cm3pw5j5e000zciot5lmodhvq","parentId":"0"},{"name":"Cloudflare","value":7,"path":"categories/Cloudflare/","id":"cm3pw5j4x0004ciot3h4l97zu","parentId":"0"},{"name":"Hexo","value":6,"path":"categories/Hexo/","id":"cm3pw5j53000cciotefb2goty","parentId":"0"},{"name":"金克丝","value":2,"path":"categories/金克丝/","id":"cm3pw5j58000jciot9rw4h75b","parentId":"0"}],
+        data: [{"name":"学习中","value":10,"path":"categories/学习中/","id":"cm3pwdp1z000zczoka6kt599n","parentId":"0"},{"name":"Cloudflare","value":7,"path":"categories/Cloudflare/","id":"cm3pwdp1h0004czokd5k89qew","parentId":"0"},{"name":"Hexo","value":6,"path":"categories/Hexo/","id":"cm3pwdp1o000cczoka5big1bg","parentId":"0"},{"name":"金克丝","value":2,"path":"categories/金克丝/","id":"cm3pwdp1s000jczok66li9fgi","parentId":"0"}],
         itemStyle: {
           emphasis: {
             shadowBlur: 10,
@@ -900,7 +900,7 @@ window.addEventListener('load', () => {
       if (typeof EasyDanmaku === 'function') {
         await naokuo_danmu();
       } else {
-        const easyDanmakuScript = await getScript('https://cdn.jsdelivr.net/gh/niceao/niceao-cdn@main/hexo/js/danmu.js');
+        const easyDanmakuScript = await getScript('/static/danmu.js');
         if (typeof EasyDanmaku === 'function') {
           await naokuo_danmu();
         } else {
