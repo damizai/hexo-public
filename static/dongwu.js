@@ -1,1 +1,52 @@
-const _0x2d4059=_0x51bf;function _0x4de9(){const _0x52b633=['error','2553439iNgpGD','blog.200038.xyz','textContent','2718756CTLrdc','10kjamqR','xn--yhq50f2v6f.us.kg','124vQqgJT','您现在处于恶意镜像站中,即将跳转回源站!','href','https://hexo.200038.xyz/','localhost','div','beforebegin','795DbUToW','createElement','head','\x0a\x20\x20\x20\x20\x20\x20#footer-animal\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20position:\x20relative;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20#footer-animal::before\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20content:\x20\x27\x27;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20position:\x20absolute;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20bottom:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20height:\x2036px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20background:\x20url(https://i1.wp.com/img.000.pe/i/2024/11/23/796438.webp)\x20repeat\x20center\x20/\x20auto\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20box-shadow:\x200\x204px\x207px\x20rgba(0,0,0,.15);\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20.animal\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20position:\x20relative;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20max-width:\x20min(974px,\x20100vw);\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin:\x200\x20auto;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20display:\x20block;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20#footer-bar\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-top:\x200\x20!important;\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20@media\x20screen\x20and\x20(max-width:\x201023px)\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20#footer-animal::before\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20height:\x204vw;\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x20\x20[data-theme=dark]\x20#footer-animal\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20filter:\x20brightness(.8);\x0a\x20\x20\x20\x20\x20\x20}\x0a\x20\x20','hexo.200038.xyz','show','#footer-bar','378760HBiMcy','includes','15882aEMQTt','fastly.hexo.200038.xyz','4242fZHrtm','232716QjCfuD','gcore.hexo.200038.xyz','insertAdjacentElement','innerHTML','2636456ErgYvd','找不到指定元素','appendChild','addEventListener','location'];_0x4de9=function(){return _0x52b633;};return _0x4de9();}function _0x51bf(_0x31ef11,_0x52383f){const _0x4de994=_0x4de9();return _0x51bf=function(_0x51bfc8,_0x4c093e){_0x51bfc8=_0x51bfc8-0x164;let _0x2d026c=_0x4de994[_0x51bfc8];return _0x2d026c;},_0x51bf(_0x31ef11,_0x52383f);}(function(_0x26c372,_0x1bc81d){const _0xf45983=_0x51bf,_0x11666d=_0x26c372();while(!![]){try{const _0xdbd2d=parseInt(_0xf45983(0x17a))/0x1+-parseInt(_0xf45983(0x17f))/0x2+-parseInt(_0xf45983(0x17c))/0x3*(-parseInt(_0xf45983(0x16c))/0x4)+-parseInt(_0xf45983(0x173))/0x5*(-parseInt(_0xf45983(0x17e))/0x6)+-parseInt(_0xf45983(0x166))/0x7+parseInt(_0xf45983(0x183))/0x8+-parseInt(_0xf45983(0x169))/0x9*(parseInt(_0xf45983(0x16a))/0xa);if(_0xdbd2d===_0x1bc81d)break;else _0x11666d['push'](_0x11666d['shift']());}catch(_0x11c3a9){_0x11666d['push'](_0x11666d['shift']());}}}(_0x4de9,0x31399));const allowedDomains=[_0x2d4059(0x170),_0x2d4059(0x167),_0x2d4059(0x177),_0x2d4059(0x17d),_0x2d4059(0x16b),'vercel.hexo.200038.xyz',_0x2d4059(0x180)];!allowedDomains[_0x2d4059(0x17b)](document['domain'])&&(Snackbar[_0x2d4059(0x178)]({'text':decodeURI(_0x2d4059(0x16d)),'pos':'top-center','actionText':'确定','duration':0x1388,'onActionClick':()=>window[_0x2d4059(0x164)][_0x2d4059(0x16e)]=_0x2d4059(0x16f)}),setTimeout(()=>window[_0x2d4059(0x164)][_0x2d4059(0x16e)]=_0x2d4059(0x16f),0x1388));function initFooterAnimal(){const _0x2515a3=_0x2d4059,_0x36b4ed=document['querySelector'](_0x2515a3(0x179));if(!_0x36b4ed)return console[_0x2515a3(0x165)](_0x2515a3(0x184));const _0x25a9c3=document[_0x2515a3(0x174)](_0x2515a3(0x171));_0x25a9c3['id']='footer-animal',_0x25a9c3[_0x2515a3(0x182)]='\x0a\x20\x20\x20\x20\x20\x20<img\x20class=\x22animal\x20entered\x20loaded\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20src=\x22https://i1.wp.com/img.000.pe/i/2024/10/25/010116.webp\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20alt=\x22动物\x22\x20/>\x0a\x20\x20',_0x36b4ed[_0x2515a3(0x181)](_0x2515a3(0x172),_0x25a9c3);const _0x359cae=document['createElement']('style');_0x359cae[_0x2515a3(0x168)]=_0x2515a3(0x176),document[_0x2515a3(0x175)][_0x2515a3(0x185)](_0x359cae);}document[_0x2d4059(0x186)]('DOMContentLoaded',initFooterAnimal),document[_0x2d4059(0x186)]('pjax:success',initFooterAnimal);
+// 底部栏小动物
+function initFooterAnimal() {
+  const footerBar = document.querySelector('#footer-bar');
+  if (!footerBar) return console.error('找不到指定元素');
+
+  const footerAnimal = document.createElement('div');
+  footerAnimal.id = 'footer-animal';
+  footerAnimal.innerHTML = `
+      <img class="animal entered loaded"
+          src="https://i1.wp.com/img.000.pe/i/2024/10/25/010116.webp"
+          alt="动物" />
+  `;
+  
+  footerBar.insertAdjacentElement('beforebegin', footerAnimal);
+
+  const style = document.createElement('style');
+  style.textContent = `
+      #footer-animal {
+          position: relative;
+      }
+      #footer-animal::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 36px;
+          background: url(https://i1.wp.com/img.000.pe/i/2024/11/23/796438.webp) repeat center / auto 100%;
+          box-shadow: 0 4px 7px rgba(0,0,0,.15);
+      }
+      .animal {
+          position: relative;
+          max-width: min(974px, 100vw);
+          margin: 0 auto;
+          display: block;
+      }
+      #footer-bar {
+          margin-top: 0 !important;
+      }
+      @media screen and (max-width: 1023px) {
+          #footer-animal::before {
+              height: 4vw;
+          }
+      }
+      [data-theme=dark] #footer-animal {
+          filter: brightness(.8);
+      }
+  `;
+  document.head.appendChild(style);
+}
+
+document.addEventListener('DOMContentLoaded', initFooterAnimal);
+document.addEventListener('pjax:success', initFooterAnimal);
